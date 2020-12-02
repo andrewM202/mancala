@@ -8,26 +8,27 @@ body {
 }
 
 .board {
-  width: 90vw;
-  height: 200px;
-  background-color: orange;
+  width: 1000px;
+  height: 500px;
+  background-color: #825959;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .container {
-  width: 80%;
-  height: 180px;
+  padding: 0 3%;
+  width: 70%;
+  height: 90%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .side-one,
 .side-two {
   width: 100%;
   height: 90px;
-  border: 1px solid black;
   display: flex;
   justify-content: space-between;
 }
@@ -36,7 +37,8 @@ body {
 .side-two > div {
   width: 15%;
   height: 100%;
-  background-color: green;
+  background-color: #a07676;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,10 +63,14 @@ body {
   flex-wrap: wrap;
 }
 
+.mancala-one,
 .mancala-two {
+  margin: 0 2.5%;
   width: 10%;
-  height: 180px;
+  height: 65%;
   border: 1px solid black;
+  background-color: #a07676;
+  border-radius: 25%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
