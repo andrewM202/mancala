@@ -5,7 +5,6 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: ;
 }
 
 .board {
@@ -18,17 +17,18 @@ body {
 }
 
 .container {
-  width: 80%;
-  height: 180px;
+  padding: 0 3%;
+  width: 70%;
+  height: 90%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .side-one,
 .side-two {
   width: 100%;
   height: 90px;
-  border: 1px solid black;
   display: flex;
   justify-content: space-between;
 }
@@ -38,20 +38,18 @@ body {
   width: 15%;
   height: 100%;
   background-color: #a07676;
-}
-
-.mancala-one {
-  width: 10%;
-  height: 180px;
+  border-radius: 50%;
   border: 1px solid black;
-  background-color: #a07676;
 }
 
+.mancala-one,
 .mancala-two {
+  margin: 0 2.5%;
   width: 10%;
-  height: 180px;
+  height: 65%;
   border: 1px solid black;
   background-color: #a07676;
+  border-radius: 25%;
 }
 
 @media (min-width: 1200px) {
