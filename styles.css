@@ -54,15 +54,6 @@ body {
   background-color: gray;
 }
 
-.mancala-one {
-  width: 10%;
-  height: 180px;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
 .mancala-one,
 .mancala-two {
   margin: 0 2.5%;
