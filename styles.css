@@ -45,9 +45,10 @@ body {
 /* these are the pieces inside the pockets */
 .side-one > div > div,
 .side-two > div > div {
-  height: 10px;
-  width: 10px;
-  margin:10px;
+  height: 15px;
+  width: 15px;
+  margin: 10px;
+  border-radius: 100%;
   background-color: gray;
 }
 
@@ -76,5 +77,6 @@ body {
 @media (max-width: 1199px) {
   .board {
     transform: rotate(90deg);
+    min-width: 800px;
   }
 }
