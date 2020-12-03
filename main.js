@@ -1,3 +1,4 @@
+
 //declaring various pieces of html in js
 //mancalas
 let mancalaOne = document.querySelector(".mancala-one");
@@ -96,3 +97,20 @@ const checkScore = function () {
 };
 
 test.addEventListener("click", checkScore);
+
+let playerOneTurn = false;
+let playerTwoTurn = false;
+
+function randomPlayer() {
+  if(Math.random() < 0.5) {
+    playerOneTurn = true;
+  } else {
+    playerTwoTurn = true;
+  }
+}
+
+
+  randomPlayer();
+  console.log(`Player One: ${playerOneTurn}`);
+  console.log(`Player Two: ${playerTwoTurn}`);
+
