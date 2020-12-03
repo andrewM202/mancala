@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -6,15 +7,40 @@
 
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   width: 100vw;
   height: 100vh;
 }
+#scoreboard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+#scoreboard-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-style: solid;
+  border-color: blue;
+  padding: 10px;
+}
 
+#scoreboard-two {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-style: solid;
+  border-color: red;
+  padding: 10px;
+}
+#scoreboard-one > p,
+#scoreboard-two > p {
+  font-size: 2.5em;
+}
 .board {
   width: 1000px;
-  height: 450px;
+  height: 500px;
   background-color: #825959;
   display: flex;
   justify-content: center;
@@ -32,6 +58,7 @@ body {
 
 .side-two {
   margin-top: 70px;
+
 }
 
 .side-one,
@@ -54,8 +81,7 @@ body {
   flex-wrap: wrap;
 }
 /* these are the pieces inside the pockets */
-.side-one > div > div,
-.side-two > div > div {
+.piece {
   height: 15px;
   width: 15px;
   margin: 10px;
@@ -65,6 +91,7 @@ body {
 
 .mancala-one,
 .mancala-two {
+  margin: 0 2.5%;
   width: 10%;
   height: 65%;
   border: 1px solid black;
@@ -76,7 +103,6 @@ body {
 }
 
 @media (min-width: 1200px) {
-
 }
 
 @media (max-width: 1199px) {
