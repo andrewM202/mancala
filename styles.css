@@ -12,6 +12,29 @@ body {
   height: 100vh;
 }
 
+.player-display {
+  width: 750px;
+  height: 150px;
+  margin: 0px auto;
+  margin-bottom: 100px;
+  display: flex;
+}
+
+.player-one-display,
+.player-two-display {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  background-color: #e8e8e8;
+}
+
+.player-one-display {
+  border-right: 1px solid black;
+}
+
 .board {
   width: 1000px;
   height: 450px;
