@@ -96,31 +96,31 @@ const checkScore = function () {
   }
 };
 
+
 test.addEventListener("click", checkScore);
 
+
+
+//Variales to check whose turn it is; if true its your turn
 let playerOneTurn = false;
 let playerTwoTurn = false;
+//These are displays to see who is up
+let playerOneDisplay = document.querySelector('.player-one-display');
+let playerTwoDisplay = document.querySelector('.player-two-display');
+
 
 // Sets random player for start of game and changes colors and text of displays
 function randomPlayer() {
-  let playerOneDisplay = document.querySelector('.player-one-display');
-  let playerTwoDisplay = document.querySelector('.player-two-display');
-
   //If its less than 0.5, player one's turn, change display one style and text
   if(Math.random() < 0.5) {
     playerOneTurn = true;
-    playerOneDisplay.style.background = '#adce74';
+    playerOneDisplay.style.background = '#9ddfd3';
     playerOneDisplay.querySelector('h1').textContent = "Player One's Turn!"
   } else { //If its greater than 0.5, player two's turn, change display two style and text
     playerTwoTurn = true;
-    playerTwoDisplay.style.background = '#adce74';
+    playerTwoDisplay.style.background = '#ea2c62';
     playerTwoDisplay.querySelector('h1').textContent = "Player Two's Turn!"
   }
 }
 
-
-
-  randomPlayer();
-  console.log(`Player One: ${playerOneTurn}`);
-  console.log(`Player Two: ${playerTwoTurn}`);
-
+randomPlayer();
