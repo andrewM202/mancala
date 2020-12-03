@@ -23,10 +23,8 @@ let pocketsTwo = document.querySelectorAll(".side-two > div");
 //a button for testing things, temporary
 let test = document.querySelector("#test");
 
-
 //function that checks who won the game
-const checkWin = function() {
-
+const checkWin = function () {
   let winner = document.createElement("p");
   body.style.backgroundColor = "pink";
   winner.style.borderStyle = "solid";
@@ -38,13 +36,12 @@ const checkWin = function() {
     winner.textContent = "Player 2 wins!";
     winner.style.borderColor = "red";
   } else {
-    winner.textContent = "Draw!"
+    winner.textContent = "Draw!";
   }
-}
-
+};
 
 //function that increases each players score when they capture a piece
-const checkScore = function() {
+const checkScore = function () {
   //checks the children of mancalaOne
   for (i of mancalaOne.childNodes) {
     //checks to make sure its a div and hasnt been prebiously checked
@@ -79,16 +76,16 @@ const checkScore = function() {
         notEmptyOne = true;
       }
     }
-    }
+  }
   //repeat of above code for side two
-    let notEmptyTwo = false;
-    for (i of pocketsTwo) {
-      for (child of i.childNodes) {
-        if (child.nodeName === "DIV") {
-          notEmptyTwo = true;
-        }
+  let notEmptyTwo = false;
+  for (i of pocketsTwo) {
+    for (child of i.childNodes) {
+      if (child.nodeName === "DIV") {
+        notEmptyTwo = true;
       }
-      }
+    }
+  }
   //if one of the sides is gone through and there are no pieces, checks who won
   if (notEmptyOne === false) {
     return checkWin();
@@ -98,4 +95,4 @@ const checkScore = function() {
   }
 };
 
-test.addEventListener("click", checkScore)
+test.addEventListener("click", checkScore);

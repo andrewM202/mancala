@@ -27,7 +27,8 @@ body {
   border-color: red;
   padding: 10px;
 }
-#scoreboard-one > p, #scoreboard-two > p {
+#scoreboard-one > p,
+#scoreboard-two > p {
   font-size: 2.5em;
 }
 .board {
@@ -90,7 +91,6 @@ body {
 }
 
 @media (min-width: 1200px) {
-
 }
 
 @media (max-width: 1199px) {
