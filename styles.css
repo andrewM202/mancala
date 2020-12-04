@@ -14,11 +14,7 @@ body {
   height: 100vh;
 }
 
-.player-display {
-  width: 40%;
-  height: 150px;
-  display: flex;
-}
+/* Player and scoreboard displays below */
 
 .player-one-display,
 .player-two-display {
@@ -38,7 +34,6 @@ body {
 .player-two-display {
   border: 5px solid #ea2c62;
 }
-
 
 #scoreboard {
   display: flex;
@@ -69,6 +64,8 @@ body {
   font-size: 2.5em;
 }
 
+/* Player and scoreboard displays above */
+
 .board {
   width: 1000px;
   height: 500px;
@@ -89,7 +86,6 @@ body {
 
 .side-two {
   margin-top: 70px;
-
 }
 
 .side-one,
@@ -99,6 +95,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
 /* these are the pockets */
 .side-one > div,
 .side-two > div {
@@ -110,7 +107,42 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  cursor: pointer;
 }
+
+/* Piece display below */
+
+.piece-display-one,
+.piece-display-two {
+  width: 100%;
+  height: 13%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.piece-display-one {
+  margin-bottom: 25px;
+}
+
+.piece-display-two {
+  margin-top: 25px;
+}
+
+.piece-display-one > div,
+.piece-display-two > div {
+  width: 15%;
+  height: 100%;
+  border: 2px solid #a07676;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+/* Piece display above */
+
 /* these are the pieces inside the pockets */
 .piece {
   height: 15px;
