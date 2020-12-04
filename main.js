@@ -21,8 +21,6 @@ let countTwo = 0;
 //all the pockets of side 1 & 2 to check if they're empty
 let pocketsOne = document.querySelectorAll(".side-one > div");
 let pocketsTwo = document.querySelectorAll(".side-two > div");
-//a button for testing things, temporary
-let test = document.querySelector("#test");
 
 //function that checks who won the game
 const checkWin = function () {
@@ -96,21 +94,57 @@ const checkScore = function () {
   }
 };
 
+//If any of the pockets are clicked, check the score
+pocketsOne.forEach(element => element.addEventListener("click", checkScore));
+pocketsTwo.forEach(element => element.addEventListener("click", checkScore));
 
-test.addEventListener("click", checkScore);
 
+//For each of the piece displays
+let displayOnePieces = document.querySelector(".piece-display-one").children;
+let displayTwoPieces = document.querySelector(".piece-display-two").children;
+
+//Function to display how many pieces in each pocket and display it
+const piecesInPocket = function() {
+  let currentPocket = 0;
+  //Check each piece in each pocket
+  for(let pocket of pocketsOne) {
+    let pieces = 0;
+    for(let piece of pocket.children) {
+      pieces++;
+      displayOnePieces[currentPocket].querySelector('p').textContent = pieces + " Pieces";
+    }
+    currentPocket++;
+  }
+  //Reset currentPocket to be used again to check pieces for second display
+  currentPocket = 0;
+
+  for(let pocket of pocketsTwo) {
+    let pieces = 0;
+    for(let piece of pocket.children) {
+      pieces++;
+      displayTwoPieces[currentPocket].querySelector('p').textContent = pieces + " Pieces";
+    }
+    currentPocket++;
+  }
+}
+
+//Call function once for when window loads
+piecesInPocket();
+//If any of the pockets are clicked, a turn has gone, thus check the score
+pocketsOne.forEach(element => element.addEventListener("click", piecesInPocket));
+pocketsTwo.forEach(element => element.addEventListener("click", piecesInPocket));
 
 
 //Variales to check whose turn it is; if true its your turn
 let playerOneTurn = false;
 let playerTwoTurn = false;
-//These are displays to see who is up
+//These are displays to see whose turn it is
 let playerOneDisplay = document.querySelector('.player-one-display');
 let playerTwoDisplay = document.querySelector('.player-two-display');
 
 
 // Sets random player for start of game and changes colors and text of displays
-function randomPlayer() {
+const randomPlayer = function() {
   //If its less than 0.5, player one's turn, change display one style and text
   if(Math.random() < 0.5) {
     playerOneTurn = true;
