@@ -182,25 +182,25 @@ const movement = function(evt) {
       counter += 1;
       i.remove();
     }
-  }
   console.log(counter);
+  }
+
   let increase = 1;
+
   while (counter > 0) {
     let newPiece = document.createElement("div");
     newPiece.classList.add("piece");
     let nextPocket = loop.indexOf(start) + increase;
     loop[nextPocket].appendChild(newPiece);
-    if (loop[nextPocket] !== loop[14]) {
-    increase += 1;
-    counter -=1;
-  } else {
-    nextPocket = 0;
+    counter -= 1;
+    if (nextPocket == 13) {
     increase = 0;
-  }
-  return checkScore();
+    start = pocketSix;
+  } else {
+    increase += 1;
   }
 }
-
+}
   for (let i of pocketsOne) {
     i.addEventListener("click", movement);
   }
