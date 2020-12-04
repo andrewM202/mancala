@@ -1,4 +1,3 @@
-
 //declaring various pieces of html in js
 //mancalas
 let mancalaOne = document.querySelector(".mancala-one");
@@ -108,66 +107,123 @@ const checkScore = function () {
 };
 
 //If any of the pockets are clicked, check the score
-pocketsOne.forEach(element => element.addEventListener("click", checkScore));
-pocketsTwo.forEach(element => element.addEventListener("click", checkScore));
-
+pocketsOne.forEach((element) => element.addEventListener("click", checkScore));
+pocketsTwo.forEach((element) => element.addEventListener("click", checkScore));
 
 //For each of the piece displays
 let displayOnePieces = document.querySelector(".piece-display-one").children;
 let displayTwoPieces = document.querySelector(".piece-display-two").children;
 
 //Function to display how many pieces in each pocket and display it
-const piecesInPocket = function() {
+const piecesInPocket = function () {
   let currentPocket = 0;
   //Check each piece in each pocket
-  for(let pocket of pocketsOne) {
+  for (let pocket of pocketsOne) {
     let pieces = 0;
-    for(let piece of pocket.children) {
+    for (let piece of pocket.children) {
       pieces++;
-      displayOnePieces[currentPocket].querySelector('p').textContent = pieces + " Pieces";
+      displayOnePieces[currentPocket].querySelector("p").textContent =
+        pieces + " Pieces";
     }
     currentPocket++;
   }
   //Reset currentPocket to be used again to check pieces for second display
   currentPocket = 0;
 
-  for(let pocket of pocketsTwo) {
+  for (let pocket of pocketsTwo) {
     let pieces = 0;
-    for(let piece of pocket.children) {
+    for (let piece of pocket.children) {
       pieces++;
-      displayTwoPieces[currentPocket].querySelector('p').textContent = pieces + " Pieces";
+      displayTwoPieces[currentPocket].querySelector("p").textContent =
+        pieces + " Pieces";
     }
     currentPocket++;
   }
-}
+};
 
 //Call function once for when window loads
 piecesInPocket();
 //If any of the pockets are clicked, a turn has gone, thus check the score
-pocketsOne.forEach(element => element.addEventListener("click", piecesInPocket));
-pocketsTwo.forEach(element => element.addEventListener("click", piecesInPocket));
-
+pocketsOne.forEach((element) =>
+  element.addEventListener("click", piecesInPocket)
+);
+pocketsTwo.forEach((element) =>
+  element.addEventListener("click", piecesInPocket)
+);
 
 //Variales to check whose turn it is; if true its your turn
 let playerOneTurn = false;
 let playerTwoTurn = false;
 //These are displays to see whose turn it is
-let playerOneDisplay = document.querySelector('.player-one-display');
-let playerTwoDisplay = document.querySelector('.player-two-display');
-
+let playerOneDisplay = document.querySelector(".player-one-display");
+let playerTwoDisplay = document.querySelector(".player-two-display");
 
 // Sets random player for start of game and changes colors and text of displays
-const randomPlayer = function() {
+const randomPlayer = function () {
   //If its less than 0.5, player one's turn, change display one style and text
-  if(Math.random() < 0.5) {
+  if (Math.random() < 0.5) {
     playerOneTurn = true;
-    playerOneDisplay.style.background = '#9ddfd3';
-    playerOneDisplay.querySelector('h1').textContent = "Player One's Turn!"
-  } else { //If its greater than 0.5, player two's turn, change display two style and text
+    playerOneDisplay.style.background = "#9ddfd3";
+    playerOneDisplay.querySelector("h1").textContent = "Player One's Turn!";
+  } else {
+    //If its greater than 0.5, player two's turn, change display two style and text
     playerTwoTurn = true;
-    playerTwoDisplay.style.background = '#ea2c62';
-    playerTwoDisplay.querySelector('h1').textContent = "Player Two's Turn!"
+    playerTwoDisplay.style.background = "#ea2c62";
+    playerTwoDisplay.querySelector("h1").textContent = "Player Two's Turn!";
   }
+};
+
+let loop = [
+  pocketSix,
+  pocketFive,
+  pocketFour,
+  pocketThree,
+  pocketTwo,
+  pocketOne,
+  mancalaOne,
+  pocketSeven,
+  pocketEight,
+  pocketNine,
+  pocketTen,
+  pocketEleven,
+  pocketTwelve,
+  mancalaTwo,
+];
+
+const movement = function (evt) {
+  let start = evt.target;
+  let counter = 0;
+  for (i of start.childNodes) {
+    if (i.nodeName === "DIV") {
+      counter += 1;
+      i.remove();
+    }
+    console.log(counter);
+  }
+
+  let increase = 1;
+
+  while (counter > 0) {
+    let newPiece = document.createElement("div");
+    newPiece.classList.add("piece");
+    let nextPocket = loop.indexOf(start) + increase;
+    loop[nextPocket].appendChild(newPiece);
+    counter -= 1;
+    if (nextPocket == 13) {
+      increase = 0;
+      start = pocketSix;
+    } else {
+      increase += 1;
+    }
+  }
+  checkScore();
+  piecesInPocket();
+};
+for (let i of pocketsOne) {
+  i.addEventListener("click", movement);
+}
+for (let i of pocketsTwo) {
+  i.addEventListener("click", movement);
 }
 
 let loop = [pocketSix, pocketFive, pocketFour, pocketThree, pocketTwo,
