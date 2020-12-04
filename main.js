@@ -22,6 +22,19 @@ let countTwo = 0;
 let pocketsOne = document.querySelectorAll(".side-one > div");
 let pocketsTwo = document.querySelectorAll(".side-two > div");
 
+let pocketOne = document.querySelector(".pocket-one");
+let pocketTwo = document.querySelector(".pocket-two");
+let pocketThree = document.querySelector(".pocket-three");
+let pocketFour = document.querySelector(".pocket-four");
+let pocketFive = document.querySelector(".pocket-five");
+let pocketSix = document.querySelector(".pocket-six");
+let pocketSeven = document.querySelector(".pocket-seven");
+let pocketEight = document.querySelector(".pocket-eight");
+let pocketNine = document.querySelector(".pocket-nine");
+let pocketTen = document.querySelector(".pocket-ten");
+let pocketEleven = document.querySelector(".pocket-eleven");
+let pocketTwelve = document.querySelector(".pocket-twelve");
+
 //function that checks who won the game
 const checkWin = function () {
   let winner = document.createElement("p");
@@ -156,5 +169,45 @@ const randomPlayer = function() {
     playerTwoDisplay.querySelector('h1').textContent = "Player Two's Turn!"
   }
 }
+
+let loop = [pocketSix, pocketFive, pocketFour, pocketThree, pocketTwo,
+pocketOne, mancalaOne, pocketSeven, pocketEight, pocketNine, pocketTen,
+pocketEleven, pocketTwelve, mancalaTwo];
+
+const movement = function(evt) {
+  let start = evt.target;
+  let counter = 0;
+  for (i of start.childNodes) {
+    if (i.nodeName === "DIV") {
+      counter += 1;
+      i.remove();
+    }
+  }
+  console.log(counter);
+  let increase = 1;
+  while (counter > 0) {
+    let newPiece = document.createElement("div");
+    newPiece.classList.add("piece");
+    let nextPocket = loop.indexOf(start) + increase;
+    loop[nextPocket].appendChild(newPiece);
+    if (loop[nextPocket] !== loop[14]) {
+    increase += 1;
+    counter -=1;
+  } else {
+    nextPocket = 0;
+    increase = 0;
+  }
+  return checkScore();
+  }
+}
+
+  for (let i of pocketsOne) {
+    i.addEventListener("click", movement);
+  }
+  for (let i of pocketsTwo) {
+    i.addEventListener("click", movement);
+  }
+
+
 
 randomPlayer();
