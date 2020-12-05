@@ -122,9 +122,9 @@ const piecesInPocket = function () {
     let pieces = 0;
     for (let piece of pocket.children) {
       pieces++;
-      displayOnePieces[currentPocket].querySelector("p").textContent =
-        pieces + " Pieces";
     }
+    displayOnePieces[currentPocket].querySelector("p").textContent =
+      pieces + " Pieces";
     currentPocket++;
   }
   //Reset currentPocket to be used again to check pieces for second display
@@ -143,13 +143,6 @@ const piecesInPocket = function () {
 
 //Call function once for when window loads
 piecesInPocket();
-//If any of the pockets are clicked, a turn has gone, thus check the score
-pocketsOne.forEach((element) =>
-  element.addEventListener("click", piecesInPocket)
-);
-pocketsTwo.forEach((element) =>
-  element.addEventListener("click", piecesInPocket)
-);
 
 //Variales to check whose turn it is; if true its your turn
 let playerOneTurn = false;
@@ -217,6 +210,7 @@ const movement = function (evt) {
   checkScore();
   piecesInPocket();
 };
+
 pocketsOne.forEach((element) =>
   element.addEventListener("click", movement)
 );
