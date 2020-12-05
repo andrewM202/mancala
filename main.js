@@ -193,16 +193,14 @@ let loop = [
 const movement = function (evt) {
   let start = evt.target;
   let counter = 0;
-  for (i of start.childNodes) {
-    if (i.nodeName === "DIV") {
-      counter += 1;
-      i.remove();
-    }
-    console.log(counter);
+  for(let i = 0; i < start.children.length; i++) {
+    counter++;
+  }
+  for(let i = counter - 1; i > -1; i--) {
+    start.children[i].remove();
   }
 
   let increase = 1;
-
   while (counter > 0) {
     let newPiece = document.createElement("div");
     newPiece.classList.add("piece");
@@ -219,12 +217,14 @@ const movement = function (evt) {
   checkScore();
   piecesInPocket();
 };
-for (let i of pocketsOne) {
-  i.addEventListener("click", movement);
-}
-for (let i of pocketsTwo) {
-  i.addEventListener("click", movement);
-}
+pocketsOne.forEach((element) =>
+  element.addEventListener("click", movement)
+);
+pocketsTwo.forEach((element) =>
+  element.addEventListener("click", movement)
+);
+
+
 
 let loop = [pocketSix, pocketFive, pocketFour, pocketThree, pocketTwo,
 pocketOne, mancalaOne, pocketSeven, pocketEight, pocketNine, pocketTen,
