@@ -226,44 +226,4 @@ pocketsTwo.forEach((element) =>
 
 
 
-let loop = [pocketSix, pocketFive, pocketFour, pocketThree, pocketTwo,
-pocketOne, mancalaOne, pocketSeven, pocketEight, pocketNine, pocketTen,
-pocketEleven, pocketTwelve, mancalaTwo];
-
-const movement = function(evt) {
-  let start = evt.target;
-  let counter = 0;
-  for (i of start.childNodes) {
-    if (i.nodeName === "DIV") {
-      counter += 1;
-      i.remove();
-    }
-  console.log(counter);
-  }
-
-  let increase = 1;
-
-  while (counter > 0) {
-    let newPiece = document.createElement("div");
-    newPiece.classList.add("piece");
-    let nextPocket = loop.indexOf(start) + increase;
-    loop[nextPocket].appendChild(newPiece);
-    counter -= 1;
-    if (nextPocket == 13) {
-    increase = 0;
-    start = pocketSix;
-  } else {
-    increase += 1;
-  }
-}
-}
-  for (let i of pocketsOne) {
-    i.addEventListener("click", movement);
-  }
-  for (let i of pocketsTwo) {
-    i.addEventListener("click", movement);
-  }
-
-
-
 randomPlayer();
