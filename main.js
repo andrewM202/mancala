@@ -9,6 +9,12 @@ let scoreboardTwo = document.querySelector("#scoreboard-two");
 //the players scores
 let scoreOne = document.querySelector("#score-one");
 let scoreTwo = document.querySelector("#score-two");
+//Variales to check whose turn it is; if true its your turn
+let playerOneTurn = false;
+let playerTwoTurn = false;
+//These are displays to see whose turn it is
+let playerOneDisplay = document.querySelector(".player-one-display");
+let playerTwoDisplay = document.querySelector(".player-two-display");
 //the pieces
 let pieces = document.querySelectorAll(".piece");
 let sideOne = document.querySelector(".side-one");
@@ -36,16 +42,57 @@ let pocketTwelve = document.querySelector(".pocket-twelve");
 
 //function that checks who won the game
 const checkWin = function () {
+  let container = document.createElement("div");
+  container.style.display = "flex";
+
   let winner = document.createElement("p");
-  body.style.backgroundColor = "pink";
-  winner.style.borderStyle = "solid";
-  body.appendChild(winner);
+  let winnerDiv = document.createElement("div");
+  let playAgainYesDiv = document.createElement("div");
+  let playAgainNoDiv = document.createElement("div");
+  let playAgainYes = document.createElement("p");
+  let playAgainNo = document.createElement("p");
+
+  playAgainYes.textContent = "Yes!";
+  playAgainNo.textContent = "No...";
+
+  playAgainYesDiv.appendChild(playAgainYes);
+  playAgainNoDiv.appendChild(playAgainNo);
+
+  playAgainYesDiv.style.borderStyle = "solid";
+  playAgainYesDiv.style.fontSize = "2.5em";
+  playAgainYesDiv.style.padding = "15px";
+  playAgainYesDiv.style.margin = "50px";
+
+  playAgainNoDiv.style.borderStyle = "solid";
+  playAgainNoDiv.style.fontSize = "2.5em";
+  playAgainNoDiv.style.padding = "15px";
+  playAgainNoDiv.style.margin = "50px";
+
+  winnerDiv.appendChild(winner);
+  winnerDiv.style.borderStyle = "solid";
+  winner.style.fontSize = "2.5em";
+  winner.style.padding = "15px";
+  winnerDiv.style.margin = "50px";
+  container.prepend(playAgainNoDiv);
+  container.prepend(winnerDiv);
+  container.prepend(playAgainYesDiv);
+  body.prepend(container);
   if (countOne > countTwo) {
-    winner.textContent = "Player 1 wins!";
-    winner.style.borderColor = "blue";
+    body.style.backgroundColor = "#d2f5e3";
+    winner.textContent = "Player 1 wins! Play Again?";
+    winnerDiv.style.backgroundColor = "#9ddfd3";
+    winnerDiv.style.borderColor = "#9ddfd3";
+
+    playAgainYesDiv.style.backgroundColor = "#9ddfd3";
+    playAgainNoDiv.style.backgroundColor = "#9ddfd3";
   } else if (countOne < countTwo) {
-    winner.textContent = "Player 2 wins!";
-    winner.style.borderColor = "red";
+    body.style.backgroundColor = "pink";
+    winner.textContent = "Player 2 wins! Play Again?";
+    winnerDiv.style.backgroundColor = "#ea2c62";
+    winnerDiv.style.borderColor = "#ea2c62";
+
+    playAgainYesDiv.style.backgroundColor = "#ea2c62";
+    playAgainNoDiv.style.backgroundColor = "#ea2c62";
   } else {
     winner.textContent = "Draw!";
   }
@@ -143,13 +190,6 @@ const piecesInPocket = function () {
 
 //Call function once for when window loads
 piecesInPocket();
-
-//Variales to check whose turn it is; if true its your turn
-let playerOneTurn = false;
-let playerTwoTurn = false;
-//These are displays to see whose turn it is
-let playerOneDisplay = document.querySelector(".player-one-display");
-let playerTwoDisplay = document.querySelector(".player-two-display");
 
 // Sets random player for start of game and changes colors and text of displays
 const randomPlayer = function () {
