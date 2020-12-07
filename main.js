@@ -37,7 +37,7 @@ let pocketTwelve = document.querySelector(".pocket-twelve");
 //function that checks who won the game
 const checkWin = function () {
   let winner = document.createElement("p");
-  body.style.backgroundColor = "pink";
+
   winner.style.borderStyle = "solid";
   body.appendChild(winner);
   if (countOne > countTwo) {
@@ -74,6 +74,7 @@ const checkScore = function () {
       scoreTwo.textContent = countTwo;
       i.classList.add("checked");
       i.style.backgroundColor = "red";
+
     }
   }
   //variable that checks if one side is empty
@@ -158,32 +159,59 @@ const randomPlayer = function () {
     playerOneTurn = true;
     playerOneDisplay.style.background = "#9ddfd3";
     playerOneDisplay.querySelector("h1").textContent = "Player One's Turn!";
+    pocketsOne.forEach((element) =>
+      element.addEventListener("click", movement)
+    );
+
   } else {
     //If its greater than 0.5, player two's turn, change display two style and text
     playerTwoTurn = true;
     playerTwoDisplay.style.background = "#ea2c62";
     playerTwoDisplay.querySelector("h1").textContent = "Player Two's Turn!";
-  }
+    pocketsTwo.forEach((element) =>
+      element.addEventListener("click", movement)
+    );
+    }
 };
 
-let loop = [
-  pocketSix,
-  pocketFive,
-  pocketFour,
-  pocketThree,
-  pocketTwo,
-  pocketOne,
-  mancalaOne,
-  pocketSeven,
-  pocketEight,
-  pocketNine,
-  pocketTen,
-  pocketEleven,
-  pocketTwelve,
-  mancalaTwo,
-];
+
 
 const movement = function (evt) {
+  let loop = [];
+  if (playerOneTurn === true) {
+    loop = [
+      pocketSix,
+      pocketFive,
+      pocketFour,
+      pocketThree,
+      pocketTwo,
+      pocketOne,
+      mancalaOne,
+      pocketSeven,
+      pocketEight,
+      pocketNine,
+      pocketTen,
+      pocketEleven,
+      pocketTwelve,
+    ];
+  }
+  if (playerTwoTurn === true) {
+     loop = [
+      pocketSix,
+      pocketFive,
+      pocketFour,
+      pocketThree,
+      pocketTwo,
+      pocketOne,
+      pocketSeven,
+      pocketEight,
+      pocketNine,
+      pocketTen,
+      pocketEleven,
+      pocketTwelve,
+      mancalaTwo,
+    ];
+  }
   let start = evt.target;
   let counter = 0;
   for(let i = 0; i < start.children.length; i++) {
@@ -192,7 +220,7 @@ const movement = function (evt) {
   for(let i = counter - 1; i > -1; i--) {
     start.children[i].remove();
   }
-
+  let finalPocket = null;
   let increase = 1;
   while (counter > 0) {
     let newPiece = document.createElement("div");
@@ -200,23 +228,50 @@ const movement = function (evt) {
     let nextPocket = loop.indexOf(start) + increase;
     loop[nextPocket].appendChild(newPiece);
     counter -= 1;
-    if (nextPocket == 13) {
+    if (nextPocket == 12) {
       increase = 0;
       start = pocketSix;
     } else {
       increase += 1;
     }
+    finalPocket = nextPocket;
+  }
+  if (loop[finalPocket].children.length == 1) {
+    if (loop[finalPocket] !== mancalaOne && loop[finalPocket] !== mancalaTwo) {
+      if (playerOneTurn === true) {
+        playerOneTurn = false;
+        playerTwoTurn = true;
+        playerTwoDisplay.style.background = "#ea2c62";
+        playerTwoDisplay.querySelector("h1").textContent = "Player Two's Turn!"
+        playerOneDisplay.style.backgroundColor = "#e8e8e8";
+        pocketsOne.forEach((element) =>
+          element.removeEventListener("click", movement)
+        );
+        pocketsTwo.forEach((element) =>
+          element.addEventListener("click", movement)
+        );
+      } else {
+        playerOneTurn = true;
+        playerTwoTurn = false;
+        playerOneDisplay.style.background = "#9ddfd3";
+        playerOneDisplay.querySelector("h1").textContent = "Player One's Turn!";
+        playerTwoDisplay.style.backgroundColor = "#e8e8e8";
+        pocketsTwo.forEach((element) =>
+          element.removeEventListener("click", movement)
+        );
+        pocketsOne.forEach((element) =>
+          element.addEventListener("click", movement)
+        );
+      }
+    }
   }
   checkScore();
   piecesInPocket();
+
 };
 
-pocketsOne.forEach((element) =>
-  element.addEventListener("click", movement)
-);
-pocketsTwo.forEach((element) =>
-  element.addEventListener("click", movement)
-);
+
+
 
 
 

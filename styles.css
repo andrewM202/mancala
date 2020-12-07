@@ -82,9 +82,14 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-
+.side-one {
+  border-style: solid;
+  border-color: #9ddfd3;
+}
 .side-two {
   margin-top: 70px;
+  border-style: solid;
+  border-color: #ea2c62;
 }
 
 .side-one,
