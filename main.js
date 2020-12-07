@@ -209,6 +209,11 @@ const randomPlayer = function () {
     pocketsOne.forEach((element) =>
       element.addEventListener("click", movement)
     );
+    for (pcket of pocketsOne) {
+      for (pce of pcket.children) {
+        pce.addEventListener("click", movement);
+      }
+    }
 
   } else {
     //If its greater than 0.5, player two's turn, change display two style and text
@@ -218,6 +223,11 @@ const randomPlayer = function () {
     pocketsTwo.forEach((element) =>
       element.addEventListener("click", movement)
     );
+    for (pcket of pocketsTwo) {
+      for (pce of pcket.children) {
+        pce.addEventListener("click", movement);
+      }
+    }
     }
 };
 
@@ -261,6 +271,11 @@ const movement = function (evt) {
     ];
   }
   let start = evt.target;
+  //if the target is a piece, changes it to the parent pocket
+  if (evt.target.classList.contains("piece") == true) {
+    start = evt.target.parentNode;
+  }
+
   let counter = 0;
   for(let i = 0; i < start.children.length; i++) {
     counter++;
@@ -274,6 +289,7 @@ const movement = function (evt) {
   while (counter > 0) {
     let newPiece = document.createElement("div");
     newPiece.classList.add("piece");
+    newPiece.addEventListener("click", movement);
     let nextPocket = loop.indexOf(start) + increase;
     loop[nextPocket].appendChild(newPiece);
     counter -= 1;
@@ -303,6 +319,17 @@ const movement = function (evt) {
         pocketsTwo.forEach((element) =>
           element.addEventListener("click", movement)
         );
+        //adds/removes listeners in the pieces
+        for (pcket of pocketsOne) {
+          for (pce of pcket.children) {
+            pce.removeEventListener("click", movement);
+          }
+        }
+        for (pcket of pocketsTwo) {
+          for (pce of pcket.children) {
+            pce.addEventListener("click", movement);
+          }
+        }
       } else {
         playerOneTurn = true;
         playerTwoTurn = false;
@@ -315,7 +342,24 @@ const movement = function (evt) {
         pocketsOne.forEach((element) =>
           element.addEventListener("click", movement)
         );
+        for (pcket of pocketsOne) {
+          for (pce of pcket.children) {
+            pce.addEventListener("click", movement);
+          }
+        }
+        for (pcket of pocketsTwo) {
+          for (pce of pcket.children) {
+            pce.removeListener("click", movement);
+          }
+        }
       }
+    }
+    //removes listeners from pieces in mancalas
+    for (pce of mancalaOne.children) {
+      pce.removeEventListener("click", movement)
+    }
+    for (pce of mancalaTwo.children) {
+      pce.removeEventListener("click", movement)
     }
   }
   checkScore();
