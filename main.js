@@ -159,6 +159,7 @@ const randomPlayer = function () {
     playerOneTurn = true;
     playerOneDisplay.style.background = "#9ddfd3";
     playerOneDisplay.querySelector("h1").textContent = "Player One's Turn!";
+    //adds addEventListener to your side
     pocketsOne.forEach((element) =>
       element.addEventListener("click", movement)
     );
@@ -179,6 +180,7 @@ const randomPlayer = function () {
 const movement = function (evt) {
   let loop = [];
   if (playerOneTurn === true) {
+    //the loop doesn't include the opponents mancala
     loop = [
       pocketSix,
       pocketFive,
@@ -220,6 +222,7 @@ const movement = function (evt) {
   for(let i = counter - 1; i > -1; i--) {
     start.children[i].remove();
   }
+  //tracks what the final pocket is
   let finalPocket = null;
   let increase = 1;
   while (counter > 0) {
@@ -234,16 +237,20 @@ const movement = function (evt) {
     } else {
       increase += 1;
     }
+    //keeps track of what the pocket is outside of this scope
     finalPocket = nextPocket;
   }
+  //checks if the final pocket was empty and not a mancala
   if (loop[finalPocket].children.length == 1) {
     if (loop[finalPocket] !== mancalaOne && loop[finalPocket] !== mancalaTwo) {
+      //if you land in an empty pocket, change turns
       if (playerOneTurn === true) {
         playerOneTurn = false;
         playerTwoTurn = true;
         playerTwoDisplay.style.background = "#ea2c62";
         playerTwoDisplay.querySelector("h1").textContent = "Player Two's Turn!"
         playerOneDisplay.style.backgroundColor = "#e8e8e8";
+        //remove listeners from your side and add them to opponenents
         pocketsOne.forEach((element) =>
           element.removeEventListener("click", movement)
         );
