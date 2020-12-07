@@ -83,6 +83,9 @@ const checkWin = function () {
     winnerDiv.style.backgroundColor = "#9ddfd3";
     winnerDiv.style.borderColor = "#9ddfd3";
 
+    playerOneDisplay.style.backgroundColor = "#e8e8e8";
+    playerTwoDisplay.style.backgroundColor = "#e8e8e8";
+
     playAgainYesDiv.style.backgroundColor = "#9ddfd3";
     playAgainNoDiv.style.backgroundColor = "#9ddfd3";
   } else if (countOne < countTwo) {
@@ -90,6 +93,9 @@ const checkWin = function () {
     winner.textContent = "Player 2 wins! Play Again?";
     winnerDiv.style.backgroundColor = "#ea2c62";
     winnerDiv.style.borderColor = "#ea2c62";
+
+    playerOneDisplay.style.backgroundColor = "#e8e8e8";
+    playerTwoDisplay.style.backgroundColor = "#e8e8e8";
 
     playAgainYesDiv.style.backgroundColor = "#ea2c62";
     playAgainNoDiv.style.backgroundColor = "#ea2c62";
