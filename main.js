@@ -316,7 +316,8 @@ const movement = function (evt) {
         playerOneTurn = false;
         playerTwoTurn = true;
         playerTwoDisplay.style.background = "#ea2c62";
-        playerTwoDisplay.querySelector("h1").textContent = "Player Two's Turn!"
+        playerTwoDisplay.querySelector("h1").textContent = "Player Two's Turn!";
+        playerOneDisplay.querySelector("h1").textContent = "Player One";
         playerOneDisplay.style.backgroundColor = "#e8e8e8";
         //remove listeners from your side and add them to opponenents
         pocketsOne.forEach((element) =>
@@ -341,6 +342,7 @@ const movement = function (evt) {
         playerTwoTurn = false;
         playerOneDisplay.style.background = "#9ddfd3";
         playerOneDisplay.querySelector("h1").textContent = "Player One's Turn!";
+        playerTwoDisplay.querySelector("h1").textContent = "Player Two";
         playerTwoDisplay.style.backgroundColor = "#e8e8e8";
         pocketsTwo.forEach((element) =>
           element.removeEventListener("click", movement)
