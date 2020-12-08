@@ -364,6 +364,11 @@ const movement = function (evt) {
   }
   checkScore();
   piecesInPocket();
+  //if there's stones in the final pocket, it executes the function again
+  if (loop[finalPocket].children.length > 0 && loop[finalPocket] !== mancalaOne
+    && loop[finalPocket] !== mancalaTwo) {
+    loop[finalPocket].click();
+  }
 
 };
 
