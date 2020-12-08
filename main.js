@@ -252,6 +252,9 @@ const movement = function (evt) {
       pocketEleven,
       pocketTwelve,
     ];
+    for (let pcket of pocketsTwo) {
+      pcket.removeEventListener("click", movement);
+    }
   }
   if (playerTwoTurn === true) {
      loop = [
@@ -269,6 +272,9 @@ const movement = function (evt) {
       pocketTwelve,
       mancalaTwo,
     ];
+    for (let pcket of pocketsOne) {
+      pcket.removeEventListener("click", movement);
+    }
   }
   let start = evt.target;
   //if the target is a piece, changes it to the parent pocket
@@ -367,7 +373,8 @@ const movement = function (evt) {
   //if there's stones in the final pocket, it executes the function again
   if (loop[finalPocket].children.length > 0 && loop[finalPocket] !== mancalaOne
     && loop[finalPocket] !== mancalaTwo) {
-    loop[finalPocket].click();
+        loop[finalPocket].addEventListener("click", movement);
+        loop[finalPocket].click();
   }
 
 };
