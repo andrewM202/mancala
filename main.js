@@ -312,6 +312,7 @@ const movement = function (evt) {
   //checks if the final pocket was empty and not a mancala
   if (loop[finalPocket].children.length == 1) {
     if (loop[finalPocket] !== mancalaOne && loop[finalPocket] !== mancalaTwo) {
+      
       //if you land in an empty pocket, change turns
       if (playerOneTurn === true) {
         playerOneTurn = false;
@@ -374,7 +375,7 @@ const movement = function (evt) {
   checkScore();
   piecesInPocket();
   //if there's stones in the final pocket, it executes the function again
-  if (loop[finalPocket].children.length > 0 && loop[finalPocket] !== mancalaOne
+  if (loop[finalPocket].children.length > 1 && loop[finalPocket] !== mancalaOne
     && loop[finalPocket] !== mancalaTwo) {
         loop[finalPocket].addEventListener("click", movement);
         loop[finalPocket].click();
