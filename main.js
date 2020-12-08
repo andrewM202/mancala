@@ -188,9 +188,10 @@ const piecesInPocket = function () {
     let pieces = 0;
     for (let piece of pocket.children) {
       pieces++;
-      displayTwoPieces[currentPocket].querySelector("p").textContent =
-        pieces + " Pieces";
+
     }
+    displayTwoPieces[currentPocket].querySelector("p").textContent =
+    pieces + " Pieces";
     currentPocket++;
   }
 };
