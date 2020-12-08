@@ -82,10 +82,12 @@ body {
   flex-direction: column;
   justify-content: center;
 }
+
 .side-one {
   border-style: solid;
   border-color: #9ddfd3;
 }
+
 .side-two {
   margin-top: 70px;
   border-style: solid;
@@ -168,6 +170,14 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.mancala-one {
+  border: 3px solid #9ddfd3;
+}
+
+.mancala-two {
+  border: 3px solid #ea2c62;
 }
 
 @media (min-width: 1200px) {
