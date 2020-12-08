@@ -100,7 +100,7 @@ const checkWin = function () {
     playAgainYesDiv.style.backgroundColor = "#ea2c62";
     playAgainNoDiv.style.backgroundColor = "#ea2c62";
   } else {
-    winner.textContent = "Draw!";
+    winner.textContent = "Draw! Play Again?";
   }
 };
 
@@ -307,6 +307,7 @@ const movement = function (evt) {
   //checks if the final pocket was empty and not a mancala
   if (loop[finalPocket].children.length == 1) {
     if (loop[finalPocket] !== mancalaOne && loop[finalPocket] !== mancalaTwo) {
+
       //if you land in an empty pocket, change turns
       if (playerOneTurn === true) {
         playerOneTurn = false;
@@ -353,7 +354,7 @@ const movement = function (evt) {
         }
         for (pcket of pocketsTwo) {
           for (pce of pcket.children) {
-            pce.removeListener("click", movement);
+            pce.removeEventListener("click", movement);
           }
         }
       }
@@ -366,16 +367,15 @@ const movement = function (evt) {
       pce.removeEventListener("click", movement);
     }
   }
+
+  //if there's stones in the final pocket, it executes the function again
+  if (loop[finalPocket].children.length > 1 && loop[finalPocket] !== mancalaOne
+    && loop[finalPocket] !== mancalaTwo) {
+        loop[finalPocket].addEventListener("click", movement);
+        loop[finalPocket].click();
+  }
   checkScore();
   piecesInPocket();
-  //if there's stones in the final pocket, it executes the function again
-  if (
-    loop[finalPocket].children.length > 0 &&
-    loop[finalPocket] !== mancalaOne &&
-    loop[finalPocket] !== mancalaTwo
-  ) {
-    loop[finalPocket].click();
-  }
 };
 
 randomPlayer();
