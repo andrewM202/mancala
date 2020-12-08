@@ -307,7 +307,6 @@ const movement = function (evt) {
   //checks if the final pocket was empty and not a mancala
   if (loop[finalPocket].children.length == 1) {
     if (loop[finalPocket] !== mancalaOne && loop[finalPocket] !== mancalaTwo) {
-
       //if you land in an empty pocket, change turns
       if (playerOneTurn === true) {
         playerOneTurn = false;
