@@ -117,7 +117,7 @@ const checkWin = function () {
     playAgainYesDiv.style.backgroundColor = "#ea2c62";
     playAgainNoDiv.style.backgroundColor = "#ea2c62";
   } else {
-    winner.textContent = "Draw!";
+    winner.textContent = "Draw! Play Again?";
   }
 };
 
@@ -144,7 +144,6 @@ const checkScore = function () {
       scoreTwo.textContent = countTwo;
       i.classList.add("checked");
       i.style.backgroundColor = "red";
-
     }
   }
   //variable that checks if one side is empty
@@ -205,10 +204,9 @@ const piecesInPocket = function () {
     let pieces = 0;
     for (let piece of pocket.children) {
       pieces++;
-
     }
     displayTwoPieces[currentPocket].querySelector("p").textContent =
-    pieces + " Pieces";
+      pieces + " Pieces";
     currentPocket++;
   }
 };
@@ -234,7 +232,6 @@ const randomPlayer = function () {
       }
       playerTwoDisplay.style.backgroundColor = "#e8e8e8";
     }
-
   } else {
     //If its greater than 0.5, player two's turn, change display two style and text
     playerTwoTurn = true;
@@ -252,8 +249,6 @@ const randomPlayer = function () {
     playerOneDisplay.style.backgroundColor = "#e8e8e8";
     }
 };
-
-
 
 const movement = function (evt) {
   let loop = [];
@@ -279,7 +274,7 @@ const movement = function (evt) {
     }
   }
   if (playerTwoTurn === true) {
-     loop = [
+    loop = [
       pocketSix,
       pocketFive,
       pocketFour,
@@ -305,10 +300,10 @@ const movement = function (evt) {
   }
 
   let counter = 0;
-  for(let i = 0; i < start.children.length; i++) {
+  for (let i = 0; i < start.children.length; i++) {
     counter++;
   }
-  for(let i = counter - 1; i > -1; i--) {
+  for (let i = counter - 1; i > -1; i--) {
     start.children[i].remove();
   }
   //tracks what the final pocket is
@@ -388,21 +383,21 @@ const movement = function (evt) {
     }
     //removes listeners from pieces in mancalas
     for (pce of mancalaOne.children) {
-      pce.removeEventListener("click", movement)
+      pce.removeEventListener("click", movement);
     }
     for (pce of mancalaTwo.children) {
-      pce.removeEventListener("click", movement)
+      pce.removeEventListener("click", movement);
     }
   }
-  checkScore();
-  piecesInPocket();
+
   //if there's stones in the final pocket, it executes the function again
   if (loop[finalPocket].children.length > 1 && loop[finalPocket] !== mancalaOne
     && loop[finalPocket] !== mancalaTwo) {
         loop[finalPocket].addEventListener("click", movement);
         loop[finalPocket].click();
   }
-
+  checkScore();
+  piecesInPocket();
 };
 
 const restart = function() {
@@ -457,13 +452,5 @@ const restart = function() {
    //restarts game
   return restart();
  }
-
-
-
-
-
-
-
-
 
 randomPlayer();
