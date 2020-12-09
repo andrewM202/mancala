@@ -78,8 +78,11 @@ const checkWin = function () {
   container.prepend(playAgainNoDiv);
   container.prepend(winnerDiv);
   container.prepend(playAgainYesDiv);
-  body.prepend(container);
+
+  container.classList = "winnerContainerDiv";
+
   if (countOne > countTwo && foundWinner) {
+    body.prepend(container);
     foundWinner = false;
 
     body.style.backgroundColor = "#d2f5e3";
@@ -93,8 +96,9 @@ const checkWin = function () {
     playAgainYesDiv.style.backgroundColor = "#9ddfd3";
     playAgainNoDiv.style.backgroundColor = "#9ddfd3";
   } else if (countOne < countTwo && foundWinner) {
+    body.prepend(container);
     foundWinner = false;
-    
+
     body.style.backgroundColor = "pink";
     winner.textContent = "Player 2 wins! Play Again?";
     winnerDiv.style.backgroundColor = "#ea2c62";
@@ -105,7 +109,10 @@ const checkWin = function () {
 
     playAgainYesDiv.style.backgroundColor = "#ea2c62";
     playAgainNoDiv.style.backgroundColor = "#ea2c62";
-  } else {
+  } else if (foundWinner){
+    body.prepend(container);
+    foundWinner = false;
+
     winner.textContent = "Draw! Play Again?";
   }
 };
