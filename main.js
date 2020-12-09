@@ -63,18 +63,18 @@ const checkWin = function () {
   playAgainYesDiv.style.borderStyle = "solid";
   playAgainYesDiv.style.fontSize = "2.5em";
   playAgainYesDiv.style.padding = "15px";
-  playAgainYesDiv.style.margin = "50px";
+  playAgainYesDiv.style.margin = "0px";
 
   playAgainNoDiv.style.borderStyle = "solid";
   playAgainNoDiv.style.fontSize = "2.5em";
   playAgainNoDiv.style.padding = "15px";
-  playAgainNoDiv.style.margin = "50px";
+  playAgainNoDiv.style.margin = "0px";
 
   winnerDiv.appendChild(winner);
   winnerDiv.style.borderStyle = "solid";
   winner.style.fontSize = "2.5em";
   winner.style.padding = "15px";
-  winnerDiv.style.margin = "50px";
+  winnerDiv.style.margin = "0px";
   container.prepend(playAgainNoDiv);
   container.prepend(winnerDiv);
   container.prepend(playAgainYesDiv);
