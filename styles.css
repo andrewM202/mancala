@@ -13,11 +13,16 @@ body {
   height: 100vh;
 }
 
+main {
+  height: 500px;
+  width: 1000px;
+}
+
 /* Player and scoreboard displays below */
 
 .player-one-display,
 .player-two-display {
-  width: 15%;
+  width: 200px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -38,11 +43,13 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: 100vw;
+  height: 125px;
   margin-bottom: 75px;
 }
 
 #scoreboard-one {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,6 +58,7 @@ body {
 }
 
 #scoreboard-two {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -180,12 +188,41 @@ body {
   border: 3px solid #ea2c62;
 }
 
-@media (min-width: 1200px) {
-}
+@media (max-width: 1000px) {
 
-@media (max-width: 1199px) {
-  .board {
-    transform: rotate(90deg);
-    min-width: 800px;
+  body {
+    height: 1023px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+
+  #scoreboard {
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 250px;
+    margin-top: -28px;
+  }
+
+  #scoreboard > div {
+    width: 500px;
+  }
+
+  #scoreboard-one,
+  #scoreboard-two {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  main {
+    transform: rotate(90deg);
+  }
+
+  .piece-display-one > div p,
+  .piece-display-two > div p {
+    transform: rotate(270deg);
+    padding: 0 20px;
+  }
+
 }
