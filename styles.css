@@ -191,6 +191,7 @@ main {
 @media (max-width: 1200px) {
 
   body {
+    height: 1023px;
     display: flex;
     flex-direction: column;
     justify-content: center;
