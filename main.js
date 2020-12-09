@@ -23,6 +23,8 @@ let body = document.querySelector("body");
 //global variables for tracking players score
 let countOne = 0;
 let countTwo = 0;
+//to check if a winner is found to avoid duplicate win messages
+let foundWinner = true;
 //all the pockets of side 1 & 2 to check if they're empty
 let pocketsOne = document.querySelectorAll(".side-one > div");
 let pocketsTwo = document.querySelectorAll(".side-two > div");
@@ -77,7 +79,9 @@ const checkWin = function () {
   container.prepend(winnerDiv);
   container.prepend(playAgainYesDiv);
   body.prepend(container);
-  if (countOne > countTwo) {
+  if (countOne > countTwo && foundWinner) {
+    foundWinner = false;
+
     body.style.backgroundColor = "#d2f5e3";
     winner.textContent = "Player 1 wins! Play Again?";
     winnerDiv.style.backgroundColor = "#9ddfd3";
@@ -88,7 +92,9 @@ const checkWin = function () {
 
     playAgainYesDiv.style.backgroundColor = "#9ddfd3";
     playAgainNoDiv.style.backgroundColor = "#9ddfd3";
-  } else if (countOne < countTwo) {
+  } else if (countOne < countTwo && foundWinner) {
+    foundWinner = false;
+    
     body.style.backgroundColor = "pink";
     winner.textContent = "Player 2 wins! Play Again?";
     winnerDiv.style.backgroundColor = "#ea2c62";
