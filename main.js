@@ -449,6 +449,8 @@ const restart = function () {
   body.style.backgroundColor = "white";
   //update piece counters
   piecesInPocket();
+  //reset foundWinner for next round
+  foundWinner = true;
   //pick random player
   return randomPlayer();
 };
