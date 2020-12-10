@@ -192,8 +192,15 @@ main {
   margin: 50px;
 }
 
-.winnerDivs {
+.winnerDiv {
+  
+}
+
+.playAgainDivs {
   font-size: 2.5em;
+  padding: 15px;
+  margin: 0;
+  border-style: solid;
 }
 
 @media (max-width: 1000px) {
