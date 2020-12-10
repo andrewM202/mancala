@@ -67,6 +67,9 @@ const checkWin = function () {
 
   playAgainYesDiv.className = "playAgainDivs";
   playAgainNoDiv.className = "playAgainDivs";
+  //Add cursor style only to playAgain Divs
+  playAgainYesDiv.style.cursor = "pointer";
+  playAgainNoDiv.style.cursor = "pointer";
   //Add the p element to display winner to its container div
   winnerDiv.appendChild(winner);
   winnerDiv.className = "playAgainDivs";
