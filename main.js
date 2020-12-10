@@ -44,45 +44,40 @@ let pocketTwelve = document.querySelector(".pocket-twelve");
 
 //function that checks who won the game
 const checkWin = function () {
+  //Create container to hold the yes, no, and winner/play again divs
   let container = document.createElement("div");
   container.style.display = "flex";
-
+  //div and p element to display who won the game
   let winner = document.createElement("p");
   let winnerDiv = document.createElement("div");
+  //divs to hold p elements that hold text if someone wants to play again
   let playAgainYesDiv = document.createElement("div");
   let playAgainNoDiv = document.createElement("div");
+  //p elements to hold text for whether someone wants to play again
   let playAgainYes = document.createElement("p");
   let playAgainNo = document.createElement("p");
-
+  //playAgainYes for if someone does want to play again, playAgainNo for opposite
   playAgainYes.textContent = "Yes!";
   playAgainNo.textContent = "No...";
-
+  //Add the p elements to their container divs
   playAgainYesDiv.appendChild(playAgainYes);
   playAgainNoDiv.appendChild(playAgainNo);
 
-  playAgainYesDiv.style.borderStyle = "solid";
-  playAgainYesDiv.style.fontSize = "2.5em";
-  playAgainYesDiv.style.padding = "15px";
-  playAgainYesDiv.style.margin = "0px";
-
-  playAgainNoDiv.style.borderStyle = "solid";
-  playAgainNoDiv.style.fontSize = "2.5em";
-  playAgainNoDiv.style.padding = "15px";
-  playAgainNoDiv.style.margin = "0px";
-
+  playAgainYesDiv.className = "playAgainDivs";
+  playAgainNoDiv.className = "playAgainDivs";
+  //Add the p element to display winner to its container div
   winnerDiv.appendChild(winner);
-  winnerDiv.style.borderStyle = "solid";
-  winner.style.fontSize = "2.5em";
-  winner.style.padding = "15px";
-  winnerDiv.style.margin = "0px";
+  winnerDiv.className = "playAgainDivs";
+
+  //Add all the play again, winner display, and don't play again divs to its flex container
   container.prepend(playAgainNoDiv);
   container.prepend(winnerDiv);
   container.prepend(playAgainYesDiv);
-
-  container.classList = "winnerContainerDiv";
-
+  container.className = "winnerContainerDiv";
+  //foundWinner checks if a winner message has been added to body yet, if not, its true
   if (countOne > countTwo && foundWinner) {
     body.prepend(container);
+    //change foundWinner to false, so another winner message cannot be added to body
     foundWinner = false;
 
     body.style.backgroundColor = "#d2f5e3";
@@ -97,6 +92,7 @@ const checkWin = function () {
     playAgainNoDiv.style.backgroundColor = "#9ddfd3";
   } else if (countOne < countTwo && foundWinner) {
     body.prepend(container);
+    //change foundWinner to false, so another winner message cannot be added to body
     foundWinner = false;
 
     body.style.backgroundColor = "pink";
@@ -111,6 +107,7 @@ const checkWin = function () {
     playAgainNoDiv.style.backgroundColor = "#ea2c62";
   } else if (foundWinner){
     body.prepend(container);
+    //change foundWinner to false, so another winner message cannot be added to body
     foundWinner = false;
 
     winner.textContent = "Draw! Play Again?";
