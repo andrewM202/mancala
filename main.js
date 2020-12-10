@@ -59,6 +59,8 @@ const checkWin = function () {
   //playAgainYes for if someone does want to play again, playAgainNo for opposite
   playAgainYes.textContent = "Yes!";
   playAgainNo.textContent = "No...";
+  playAgainYesDiv.addEventListener("click", remove);
+
   //Add the p elements to their container divs
   playAgainYesDiv.appendChild(playAgainYes);
   playAgainNoDiv.appendChild(playAgainNo);
@@ -73,6 +75,23 @@ const checkWin = function () {
   container.prepend(playAgainNoDiv);
   container.prepend(winnerDiv);
   container.prepend(playAgainYesDiv);
+  body.prepend(container);
+  for (let pcket of pocketsOne) {
+    pcket.removeEventListener("click", movement);
+    for (let pce of pcket.childNodes) {
+      if (pce.nodeName === "DIV") {
+      pce.removeEventListener("click", movement)
+    }
+    }
+  }
+  for (let pcket of pocketsTwo) {
+    pcket.removeEventListener("click", movement);
+    for (let pce of pcket.childNodes) {
+      if (pce.nodeName === 'DIV') {
+      pce.removeEventListener("click", movement)
+    }
+    }
+  }
   container.className = "winnerContainerDiv";
   //foundWinner checks if a winner message has been added to body yet, if not, its true
   if (countOne > countTwo && foundWinner) {
@@ -217,6 +236,7 @@ const randomPlayer = function () {
     playerOneTurn = true;
     playerOneDisplay.style.background = "#9ddfd3";
     playerOneDisplay.querySelector("h1").textContent = "Player One's Turn!";
+    playerTwoDisplay.querySelector("h1").textContent = "Player Two"
     //adds addEventListener to your side
     pocketsOne.forEach((element) =>
       element.addEventListener("click", movement)
@@ -225,12 +245,14 @@ const randomPlayer = function () {
       for (pce of pcket.children) {
         pce.addEventListener("click", movement);
       }
+      playerTwoDisplay.style.backgroundColor = "#e8e8e8";
     }
   } else {
     //If its greater than 0.5, player two's turn, change display two style and text
     playerTwoTurn = true;
     playerTwoDisplay.style.background = "#ea2c62";
     playerTwoDisplay.querySelector("h1").textContent = "Player Two's Turn!";
+    playerOneDisplay.querySelector("h1").textContent = "Player One"
     pocketsTwo.forEach((element) =>
       element.addEventListener("click", movement)
     );
@@ -239,7 +261,8 @@ const randomPlayer = function () {
         pce.addEventListener("click", movement);
       }
     }
-  }
+    playerOneDisplay.style.backgroundColor = "#e8e8e8";
+    }
 };
 
 const movement = function (evt) {
@@ -319,7 +342,9 @@ const movement = function (evt) {
   }
   //checks if the final pocket was empty and not a mancala
   if (loop[finalPocket].children.length == 1) {
+
     if (loop[finalPocket] !== mancalaOne && loop[finalPocket] !== mancalaTwo) {
+
       //if you land in an empty pocket, change turns
       if (playerOneTurn === true) {
         playerOneTurn = false;
@@ -389,5 +414,58 @@ const movement = function (evt) {
   checkScore();
   piecesInPocket();
 };
+
+const restart = function() {
+  //replaces the 4 pieces in each pocket
+  for (let pcket of pocketsOne) {
+    //arbitrary array tp loop through
+    let arr = [1, 2, 3, 4];
+    for (let i of arr) {
+      let newPiece = document.createElement("div");
+      newPiece.classList.add("piece");
+      pcket.appendChild(newPiece);
+    }
+  }
+  for (let pcket of pocketsTwo) {
+    let arr = [1, 2, 3, 4];
+    for (let i of arr) {
+      let newPiece = document.createElement("div");
+      newPiece.classList.add("piece");
+      pcket.appendChild(newPiece);
+   }
+ }
+ //reset points to 0
+ countOne = 0;
+ countTwo = 0;
+ scoreOne.textContent = countOne;
+ scoreTwo.textContent = countTwo;
+ //remove the winner div
+ body.removeChild(body.children[0])
+ //restore background color
+ body.style.backgroundColor = 'white';
+ //pick random player
+ return randomPlayer();
+}
+//this function removes all pieces
+ const remove = function() {
+   for (pcket of pocketsOne) {
+     while (pcket.children.length > 0) {
+       pcket.removeChild(pcket.lastChild);
+     }
+   }
+   for (pcket of pocketsTwo) {
+     while (pcket.children.length > 0) {
+       pcket.removeChild(pcket.lastChild);
+     }
+   }
+   while (mancalaOne.children.length > 0) {
+     mancalaOne.removeChild(mancalaOne.lastChild);
+   }
+   while (mancalaTwo.children.length > 0) {
+     mancalaTwo.removeChild(mancalaTwo.lastChild);
+   }
+   //restarts game
+  return restart();
+ }
 
 randomPlayer();
