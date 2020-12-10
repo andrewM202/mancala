@@ -447,6 +447,8 @@ const restart = function () {
   body.removeChild(body.children[0]);
   //restore background color
   body.style.backgroundColor = "white";
+  //update piece counters
+  piecesInPocket();
   //pick random player
   return randomPlayer();
 };

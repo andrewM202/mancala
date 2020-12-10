@@ -224,7 +224,7 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    opacity: 85%;
+    opacity: 90%;
   }
 
   .playAgainDivs:first-child,
