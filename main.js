@@ -83,7 +83,7 @@ const checkWin = function () {
     body.style.backgroundColor = "#d2f5e3";
     winner.textContent = "Player 1 wins! Play Again?";
     winnerDiv.style.backgroundColor = "#9ddfd3";
-    winnerDiv.style.borderColor = "#9ddfd3";
+    winnerDiv.style.borderColor = "black";
 
     playerOneDisplay.style.backgroundColor = "#e8e8e8";
     playerTwoDisplay.style.backgroundColor = "#e8e8e8";
@@ -98,7 +98,7 @@ const checkWin = function () {
     body.style.backgroundColor = "pink";
     winner.textContent = "Player 2 wins! Play Again?";
     winnerDiv.style.backgroundColor = "#ea2c62";
-    winnerDiv.style.borderColor = "#ea2c62";
+    winnerDiv.style.borderColor = "black";
 
     playerOneDisplay.style.backgroundColor = "#e8e8e8";
     playerTwoDisplay.style.backgroundColor = "#e8e8e8";
@@ -109,6 +109,9 @@ const checkWin = function () {
     body.prepend(container);
     //change foundWinner to false, so another winner message cannot be added to body
     foundWinner = false;
+    playAgainNoDiv.style.backgroundColor = "gray";
+    playAgainYesDiv.style.backgroundColor = "gray";
+    winnerDiv.style.backgroundColor = "gray";
 
     winner.textContent = "Draw! Play Again?";
   }
