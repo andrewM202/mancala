@@ -201,7 +201,12 @@ main {
   align-items: center;
   border: 3px solid black;
 }
-
+#vet-button {
+  margin-top: 10px;
+  border-style: solid;
+  
+  padding: 5px;
+}
 @media (max-width: 1000px) {
 
   body {
