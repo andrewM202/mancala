@@ -201,21 +201,39 @@ main {
   align-items: center;
   border: 3px solid black;
 }
+
 #vet-button {
   margin-top: 10px;
   border-style: solid;
-  
-  padding: 5px;
+  padding: 7px;
+  font-size: 1.3em;
 }
+
+a {
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+
 @media (max-width: 1000px) {
 
   body {
-    height: 1023px;
+    height: 1300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: visible;
+  }
+
+  a {
+    position: absolute;
+    top: 25px;
+    font-size: 1.5em;
+  }
+
+  #vet-button {
+    position: absolute;
+    top: 55px;
   }
 
   .winnerContainerDiv {
