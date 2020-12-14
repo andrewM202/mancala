@@ -56,6 +56,18 @@ const veteranMode = function() {
   }
 }
 vetButton.addEventListener("click", veteranMode);
+
+//function for when someone refuses a rematch
+const stopPlaying = function() {
+  body.removeChild(body.children[0]);
+  let stopDiv = document.createElement("div");
+  let stopP = document.createElement("p");
+  stopP.textContent = "Thanks for playing!";
+  stopDiv.className = "playAgainDivs";
+  stopDiv.appendChild(stopP);
+  body.prepend(stopDiv)
+}
+
 //function that checks who won the game
 const checkWin = function () {
   //Create container to hold the yes, no, and winner/play again divs
@@ -74,7 +86,7 @@ const checkWin = function () {
   playAgainYes.textContent = "Yes!";
   playAgainNo.textContent = "No...";
   playAgainYesDiv.addEventListener("click", remove);
-
+  playAgainNoDiv.addEventListener("click", stopPlaying);
   //Add the p elements to their container divs
   playAgainYesDiv.appendChild(playAgainYes);
   playAgainNoDiv.appendChild(playAgainNo);
