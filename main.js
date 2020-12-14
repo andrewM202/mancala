@@ -44,17 +44,16 @@ let pocketTwelve = document.querySelector(".pocket-twelve");
 
 //blocks that toggle veteran mode on and off
 let veteran = false;
-let vetButton = document.querySelector("#vet-button")
-const veteranMode = function() {
+let vetButton = document.querySelector("#vet-button");
+const veteranMode = function () {
   if (veteran == false) {
     veteran = true;
     vetButton.textContent = "Veteran Mode: On";
-
   } else {
     veteran = false;
-    vetButton.textContent = "Veteran Mode: Off"
+    vetButton.textContent = "Veteran Mode: Off";
   }
-}
+};
 vetButton.addEventListener("click", veteranMode);
 //function that checks who won the game
 const checkWin = function () {
@@ -246,46 +245,46 @@ const piecesInPocket = function () {
 //Call function once for when window loads
 piecesInPocket();
 
-const preview = function(evt) {
+const preview = function (evt) {
   //checks if veteran mode is on
   if (veteran == false) {
-  //slightly altered version of movement function, doesn't rmove/add pieces
-  let loop = [];
-  if (playerOneTurn === true) {
-    //the loop doesn't include the opponents mancala
-    loop = [
-      pocketSix,
-      pocketFive,
-      pocketFour,
-      pocketThree,
-      pocketTwo,
-      pocketOne,
-      mancalaOne,
-      pocketSeven,
-      pocketEight,
-      pocketNine,
-      pocketTen,
-      pocketEleven,
-      pocketTwelve,
-    ];
-  }
-  if (playerTwoTurn === true) {
-    loop = [
-      pocketSix,
-      pocketFive,
-      pocketFour,
-      pocketThree,
-      pocketTwo,
-      pocketOne,
-      pocketSeven,
-      pocketEight,
-      pocketNine,
-      pocketTen,
-      pocketEleven,
-      pocketTwelve,
-      mancalaTwo,
-    ];
-  }
+    //slightly altered version of movement function, doesn't rmove/add pieces
+    let loop = [];
+    if (playerOneTurn === true) {
+      //the loop doesn't include the opponents mancala
+      loop = [
+        pocketSix,
+        pocketFive,
+        pocketFour,
+        pocketThree,
+        pocketTwo,
+        pocketOne,
+        mancalaOne,
+        pocketSeven,
+        pocketEight,
+        pocketNine,
+        pocketTen,
+        pocketEleven,
+        pocketTwelve,
+      ];
+    }
+    if (playerTwoTurn === true) {
+      loop = [
+        pocketSix,
+        pocketFive,
+        pocketFour,
+        pocketThree,
+        pocketTwo,
+        pocketOne,
+        pocketSeven,
+        pocketEight,
+        pocketNine,
+        pocketTen,
+        pocketEleven,
+        pocketTwelve,
+        mancalaTwo,
+      ];
+    }
     let start = evt.target;
     //if the target is a piece, changes it to the parent pocket
     if (evt.target.classList.contains("piece") == true) {
@@ -307,10 +306,10 @@ const preview = function(evt) {
       finalPocket = nextPocket;
       console.log(finalPocket);
     }
-      //highlight the las pocket as green
-        loop[finalPocket].style.backgroundColor = 'green';
+    //highlight the las pocket as green
+    loop[finalPocket].style.backgroundColor = "green";
   }
-}
+};
 // Sets random player for start of game and changes colors and text of displays
 const randomPlayer = function () {
   //If its less than 0.5, player one's turn, change display one style and text
@@ -346,8 +345,8 @@ const randomPlayer = function () {
       }
       pcket.addEventListener("mouseover", preview);
     }
-  playerOneDisplay.style.backgroundColor = "#e8e8e8";
-}
+    playerOneDisplay.style.backgroundColor = "#e8e8e8";
+  }
 };
 
 const movement = function (evt) {
@@ -442,20 +441,19 @@ const movement = function (evt) {
         );
         pocketsTwo.forEach((element) =>
           element.addEventListener("click", movement)
-
         );
         //adds/removes listeners in the pieces
         for (pcket of pocketsOne) {
           for (pce of pcket.children) {
             pce.removeEventListener("click", movement);
           }
-          pcket.removeEventListener("mouseover", preview)
+          pcket.removeEventListener("mouseover", preview);
         }
         for (pcket of pocketsTwo) {
           for (pce of pcket.children) {
             pce.addEventListener("click", movement);
           }
-          pcket.addEventListener("mouseover", preview)
+          pcket.addEventListener("mouseover", preview);
         }
       } else {
         playerOneTurn = true;
@@ -469,13 +467,12 @@ const movement = function (evt) {
         );
         pocketsOne.forEach((element) =>
           element.addEventListener("click", movement)
-
         );
         for (pcket of pocketsOne) {
           for (pce of pcket.children) {
             pce.addEventListener("click", movement);
           }
-          pcket.addEventListener("mouseover", preview)
+          pcket.addEventListener("mouseover", preview);
         }
         for (pcket of pocketsTwo) {
           for (pce of pcket.children) {
@@ -564,9 +561,8 @@ const remove = function () {
   return restart();
 };
 
-
 //a function that changes the pockets colors back to normal after you hover
-const endPreview = function() {
+const endPreview = function () {
   for (let pcket of pocketsOne) {
     pcket.style.backgroundColor = "#a07676";
   }
@@ -575,7 +571,7 @@ const endPreview = function() {
   }
   mancalaOne.style.backgroundColor = "#a07676";
   mancalaTwo.style.backgroundColor = "#a07676";
-}
+};
 for (let pcket of pocketsOne) {
   pcket.addEventListener("mouseleave", endPreview);
 }
