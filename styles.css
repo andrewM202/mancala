@@ -215,7 +215,6 @@ a {
 }
 
 @media (max-width: 1000px) {
-
   body {
     height: 1300px;
     display: flex;
@@ -238,7 +237,7 @@ a {
 
   .winnerContainerDiv {
     position: absolute;
-    top: 250px;
+    top: 385px;
     left: calc(50% - 250px);
     z-index: 1;
     width: 500px;
@@ -257,7 +256,7 @@ a {
   }
 
   .playAgainDivs:nth-child(2n + 2) {
-    width: 200px;;
+    width: 200px;
     height: 150px;
   }
 
@@ -287,5 +286,4 @@ a {
     transform: rotate(270deg);
     padding: 0 20px;
   }
-
 }

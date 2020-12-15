@@ -58,7 +58,7 @@ vetButton.addEventListener("click", veteranMode);
 
 //function for when someone refuses a rematch
 const stopPlaying = function () {
-  body.childNodes.forEach(child => body.removeChild(child));
+  body.childNodes.forEach((child) => body.removeChild(child));
   let stopDiv = document.createElement("div");
   let stopP = document.createElement("p");
   stopDiv.style.backgroundColor = "white";
