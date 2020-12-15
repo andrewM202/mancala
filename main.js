@@ -55,6 +55,18 @@ const veteranMode = function () {
   }
 };
 vetButton.addEventListener("click", veteranMode);
+
+//function for when someone refuses a rematch
+const stopPlaying = function() {
+  body.removeChild(body.children[0]);
+  let stopDiv = document.createElement("div");
+  let stopP = document.createElement("p");
+  stopP.textContent = "Thanks for playing!";
+  stopDiv.className = "playAgainDivs";
+  stopDiv.appendChild(stopP);
+  body.prepend(stopDiv)
+}
+
 //function that checks who won the game
 const checkWin = function () {
   //Create container to hold the yes, no, and winner/play again divs
@@ -73,7 +85,7 @@ const checkWin = function () {
   playAgainYes.textContent = "Yes!";
   playAgainNo.textContent = "No...";
   playAgainYesDiv.addEventListener("click", remove);
-
+  playAgainNoDiv.addEventListener("click", stopPlaying);
   //Add the p elements to their container divs
   playAgainYesDiv.appendChild(playAgainYes);
   playAgainNoDiv.appendChild(playAgainNo);
@@ -91,7 +103,7 @@ const checkWin = function () {
   container.prepend(playAgainNoDiv);
   container.prepend(winnerDiv);
   container.prepend(playAgainYesDiv);
-
+  //removes the listeners from the board & pieces
   for (let pcket of pocketsOne) {
     pcket.removeEventListener("click", movement);
     for (let pce of pcket.childNodes) {
@@ -290,24 +302,33 @@ const preview = function (evt) {
     if (evt.target.classList.contains("piece") == true) {
       start = evt.target.parentNode;
     }
+    //how many pieces were in the pocket
     let counter = start.children.length;
     //tracks what the final pocket is
     let finalPocket = null;
+    //tracks how far along the array the nex pocket is
     let increase = 1;
+    //counter = number of pieces in initial pocket
     while (counter > 0) {
+      //the next pocket over, increases the position in array by one initially
       let nextPocket = loop.indexOf(start) + increase;
+      //reduce counter
       counter -= 1;
+      //for if the function reaches the end of the arbitrary
       if (nextPocket == 12) {
+        //sets increase to 0
         increase = 0;
+        //pocket six is the first element in the loop array
         start = pocketSix;
       } else {
+        //otherwise just repeat with increase +1
         increase += 1;
       }
+      //for tracking the nextPocket outside of the previous scope;
       finalPocket = nextPocket;
-      console.log(finalPocket);
     }
-    //highlight the las pocket as green
-    loop[finalPocket].style.backgroundColor = "green";
+      //highlight the last pocket as green
+        loop[finalPocket].style.backgroundColor = 'green';
   }
 };
 // Sets random player for start of game and changes colors and text of displays
@@ -368,6 +389,7 @@ const movement = function (evt) {
       pocketEleven,
       pocketTwelve,
     ];
+    //remove listener from opponents pockets
     for (let pcket of pocketsTwo) {
       pcket.removeEventListener("click", movement);
     }
@@ -397,7 +419,7 @@ const movement = function (evt) {
   if (evt.target.classList.contains("piece") == true) {
     start = evt.target.parentNode;
   }
-
+  //counter = number of pieces in initial pocket
   let counter = 0;
   for (let i = 0; i < start.children.length; i++) {
     counter++;
@@ -407,24 +429,34 @@ const movement = function (evt) {
   }
   //tracks what the final pocket is
   let finalPocket = null;
+  //how many times the loop has iterated
   let increase = 1;
+
   while (counter > 0) {
+    //creates a new piece
     let newPiece = document.createElement("div");
     newPiece.classList.add("piece");
     newPiece.addEventListener("click", movement);
+    //this is the next pocket to iterate on, initially the next one in array
+    //after start
     let nextPocket = loop.indexOf(start) + increase;
+    //add the piece
     loop[nextPocket].appendChild(newPiece);
+    //reduce the counter
     counter -= 1;
+    //this governs if it reaches the end of the array
     if (nextPocket == 12) {
+      //pocketSix is the start of the array, so it restarts
       increase = 0;
       start = pocketSix;
     } else {
+      //otherwise iterate over the next pocket
       increase += 1;
     }
-    //keeps track of what the pocket is outside of this scope
+    //keeps track of what the pocket is outside of the above scope
     finalPocket = nextPocket;
   }
-  //checks if the final pocket was empty and not a mancala
+  //checks if the final pocket was empty and not a mancala to end the turn
   if (loop[finalPocket].children.length == 1) {
     if (loop[finalPocket] !== mancalaOne && loop[finalPocket] !== mancalaTwo) {
       //if you land in an empty pocket, change turns
@@ -497,6 +529,7 @@ const movement = function (evt) {
     loop[finalPocket] !== mancalaOne &&
     loop[finalPocket] !== mancalaTwo
   ) {
+    //add a listener and click it
     loop[finalPocket].addEventListener("click", movement);
     loop[finalPocket].click();
   }
