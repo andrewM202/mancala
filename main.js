@@ -57,15 +57,16 @@ const veteranMode = function () {
 vetButton.addEventListener("click", veteranMode);
 
 //function for when someone refuses a rematch
-const stopPlaying = function() {
-  body.removeChild(body.children[0]);
+const stopPlaying = function () {
+  body.childNodes.forEach(child => body.removeChild(child));
   let stopDiv = document.createElement("div");
   let stopP = document.createElement("p");
+  stopDiv.style.backgroundColor = "white";
   stopP.textContent = "Thanks for playing!";
   stopDiv.className = "playAgainDivs";
   stopDiv.appendChild(stopP);
-  body.prepend(stopDiv)
-}
+  body.prepend(stopDiv);
+};
 
 //function that checks who won the game
 const checkWin = function () {
@@ -327,8 +328,8 @@ const preview = function (evt) {
       //for tracking the nextPocket outside of the previous scope;
       finalPocket = nextPocket;
     }
-      //highlight the last pocket as green
-        loop[finalPocket].style.backgroundColor = 'green';
+    //highlight the last pocket as green
+    loop[finalPocket].style.backgroundColor = "green";
   }
 };
 // Sets random player for start of game and changes colors and text of displays
